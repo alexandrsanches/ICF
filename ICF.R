@@ -64,4 +64,4 @@ render(input = "Scripts/Final (HTML).Rmd",
        quiet = TRUE)
 
 file.rename(from = "Resultados/Final (HTML).html",
-            to = paste0("Resultados/Acompanhamento de COVID-19 - ", max(dados$data), ".html"))
+            to = paste0("Resultados/Indicador de Condições Financeiras - ", max(dados$data), ".html"))
