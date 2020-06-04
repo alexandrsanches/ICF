@@ -1,32 +1,32 @@
 #### Define working directory ####
 
 if (Sys.info()["sysname"] == "Linux") {
-  setwd("~/OneDrive/Desenvolvimento/SPE/Indicador de Condições Financeiras")
+    setwd("~/Desenvolvimento/SPE/Indicador de Condições Financeiras")
 } else if (Sys.info()["sysname"] == "Darwin"){
-  setwd("~/Documents/GitHub/Indicador de Condições Financeiras")
+    setwd("~/Documents/GitHub/Indicador de Condições Financeiras")
 } else {
-  setwd("~/Documents/Indicador de Condições Financeiras")
+    setwd("~/Documents/Indicador de Condições Financeiras")
 }
 
 #### Load packages and functions #### 
 
 suppressPackageStartupMessages({
-  library(kableExtra)
-  library(ggrepel)
-  library(tidyverse)
-  library(tidycovid19) # Pacote do GitHub - https://github.com/joachim-gassen/tidycovid19
-  library(tsibble)
-  library(reshape2)
-  library(patchwork)
-  library(gghighlight)
-  library(zoo)
-  library(knitr) 
-  library(rmarkdown)
-  library(openxlsx)
-  library(tseries)
-  library(wesanderson)
-  library(lubridate)
-  library(HDeconometrics) # Pacote do GitHub - https://github.com/gabrielrvsc/HDeconometrics
+    library(kableExtra)
+    library(ggrepel)
+    library(tidyverse)
+    library(tidycovid19) # Pacote do GitHub - https://github.com/joachim-gassen/tidycovid19
+    library(tsibble)
+    library(reshape2)
+    library(patchwork)
+    library(gghighlight)
+    library(zoo)
+    library(knitr) 
+    library(rmarkdown)
+    library(openxlsx)
+    library(tseries)
+    library(wesanderson)
+    library(lubridate)
+    library(HDeconometrics) # Pacote do GitHub - https://github.com/gabrielrvsc/HDeconometrics
 })
 
 source("Scripts/Functions.R", encoding = "utf8")
