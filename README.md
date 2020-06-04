@@ -67,8 +67,8 @@
 | US dollar indexes (desenvolvidos)             |        |       |
 | US dollar indexes (emergentes)                |        |       |
 | Taxa de câmbio (R\$/US\$)                     |        |       |
-| Cotações em US$ do barril de petróleo (WTI)   |        |       |
-| Cotações em US$ do barril de petróleo (Brent) |        |       |
+| Cotações em US$ do barril de petróleo (WTI)   | ok! | LCA |
+| Cotações em US$ do barril de petróleo (Brent) | ok! | LCA |
 | Índices de commodities CRB (foodstuffs)       | ok! | LCA |
 | Índices de commodities CRB (metals)           | ok! | LCA |
 | Índices de ações MSCI (desenvolvidos)         |        |       |
