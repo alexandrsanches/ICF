@@ -22,6 +22,10 @@ source("Scripts/Dados.R", encoding = "utf8")
 
 #### Data transformation ####
 
+# Avaliar tranformações em variação, log, etc.
+# Normalizar dados
+# Avaliar a questão das defasagens (talvez eu possa usar o mesmo procedimento que uso nos modelos via AutoMod e XGBoost)
+
 #### Index construction ####
 
 #### Plots #####
