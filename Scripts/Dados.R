@@ -1,4 +1,3 @@
-
 #### Obtenção dos dados de planilhas ####
 
 dados1_temp <- read_excel("Dados/bm&f.xlsx", sheet = "Swaps", skip = 13,
@@ -64,7 +63,34 @@ dados8_temp <- xts(x = dados8_temp[, -1], order.by = dados8_temp$obs)["2002/"]
 
 #### Junção dos dados em um único data frame ####
 
-dados <- merge.xts(dados1_temp, dados2_temp, dados3_temp, dados5_temp, dados6_temp, dados7_temp, dados8_temp) # O dados4_temp está dando problema!
+dados <- merge.xts(dados1_temp, dados2_temp, dados3_temp, dados4_temp, dados5_temp, dados6_temp, dados7_temp, dados8_temp)
+
+#### Remoção de dias não úteis ####
+
+dias_temp <- seq.Date(from = as.Date("2002-01-01"), to = Sys.Date(), by = "day")
+dias_temp <- xts(x = rep(NA, times = length(dias_temp)), order.by = dias_temp)
+
+create.calendar(name = "Brazil/ANBIMA", holidays = holidaysANBIMA, weekdays = c("saturday", "sunday"))
+
+dias_uteis_temp <- ifelse(test = is.bizday(dates = index(dias_temp), cal = "Brazil/ANBIMA"), yes = 1, no = NA)
+dias_uteis_temp <- xts(x = dias_uteis_temp, order.by = index(dias_temp))
+colnames(dias_uteis_temp) <- "dias_uteis"
+
+dados <- merge.xts(dias_uteis_temp, dados)
+dados <- dados[!is.na(dados$dias_uteis), -1]
+
+#### Remoção dos valores NA dentro das séries ####
+
+#dados$vix["2020-06"] <- NA
+
+max_data_disponivel_temp <- max(as.Date(unlist(lapply(dados, FUN = function(x) {end(na.omit(x))}))))
+min_data_disponivel_temp <- min(as.Date(unlist(lapply(dados, FUN = function(x) {end(na.omit(x))}))))
+
+dados <- dados[paste0("/", max_data_disponivel_temp)]
+dados <- merge(temp = index(dados) <= as.Date(min_data_disponivel_temp), dados)
+
+dados <- rbind(na.omit(dados[dados$temp == 1,]),
+               dados[dados$temp == 0,])[, -1]
 
 #### Limpeza do ambiente ####
 

@@ -11,6 +11,7 @@ switch (Sys.info()["sysname"],
 suppressPackageStartupMessages({
     library(xts)
     library(readxl)
+    library(bizdays)
 })
 
 #source("Scripts/Functions.R", encoding = "utf8")
@@ -33,7 +34,7 @@ source("Scripts/Tables.R", encoding = "utf8")
 
 #### Save data for Markdown rendering #### 
 
-save.image(file = "Dados/Data & Functions.RData") 
+save.image(file = "Resultados/Informações para o relatório.RData") 
 
 #### Render R Markdown ####
 
