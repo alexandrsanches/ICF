@@ -48,11 +48,11 @@
 
 | Séries                                        | Status | Fonte |
 |-----------------------------------------------|--------|-------|
-| Swap Pré-DI 1 ano                             | ok!    | LCA (tem no Bacen: BCB7806) |
-| Swap Pré-DI 5 anos                            |        |       |
-| Juros EUA 3 meses                             | ok! | LCA |
-| Juros EUA 2 anos                              | ok! | LCA |
-| Juros EUA 10 anos                             | ok! | LCA |
+| Swap Pré-DI 1 ano                             | ok! | Bloomberg |
+| Swap Pré-DI 5 anos                            | ok! | Bloomberg |
+| Juros EUA 3 meses                             | ok! | Bloomberg |
+| Juros EUA 2 anos                              | ok! | Bloomberg |
+| Juros EUA 10 anos                             | ok! | Bloomberg |
 | Juros Reino Unido 3 meses                     |        |       |
 | Juros Reino Unido 2 anos                      |        |       |
 | Juros Reino Unido 10 anos                     |        |       |
@@ -66,11 +66,11 @@
 | VIX                                           | ok! | Bloomberg |
 | US dollar indexes (desenvolvidos)             |        |       |
 | US dollar indexes (emergentes)                |        |       |
-| Taxa de câmbio (R\$/US\$)                     | ok! | LCA |
-| Cotações em US$ do barril de petróleo (WTI)   | ok! | LCA |
-| Cotações em US$ do barril de petróleo (Brent) | ok! | LCA |
-| Índices de commodities CRB (foodstuffs)       | ok! | LCA |
-| Índices de commodities CRB (metals)           | ok! | LCA |
-| Índices de ações MSCI (desenvolvidos)         |        |       |
-| Índices de ações MSCI (emergentes)            |        |       |
-| Ibovespa                                      | ok! | LCA |
+| Taxa de câmbio (R\$/US\$)                     | ok! | Bloomberg |
+| Cotações em US$ do barril de petróleo (WTI)   | ok! | Bloomberg |
+| Cotações em US$ do barril de petróleo (Brent) | ok! | Bloomberg |
+| Índices de commodities CRB (foodstuffs)       | ok! | Bloomberg |
+| Índices de commodities CRB (metals)           | ok! | Bloomberg |
+| Índices de ações MSCI (desenvolvidos)         | ok! | Bloomberg |
+| Índices de ações MSCI (emergentes)            | ok! | Bloomberg |
+| Ibovespa                                      | ok! | Bloomberg |
