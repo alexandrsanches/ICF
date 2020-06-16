@@ -1,12 +1,6 @@
----
-title: Índice de Condições Financeiras (ICF)
-output: 
-  html_document: 
-    toc: yes
-    toc_depth: 4
----
-
 # Índice de Condições Financeiras (ICF)
+
+[TOC]
 
 ## Apresentação
 
@@ -18,15 +12,15 @@ Dados utilizados na nota do Banco Central:
 
 **Tabela 1: Componentes do ICF**
 
-| Grupos | Nomes               | Séries                                                                       | Pesos  |
-| :----: | :------------------ | :--------------------------------------------------------------------------- | :----: |
-| 1      | Juros Brasil        | Taxas de juros (Swap Pré-DI) de 1 e 5 anos                                   |  0,34  |
-| 2      | Juros exterior      | Taxas de juros dos EUA, Reino Unido, Alemanha e Japão (3 meses, 2 e 10 anos) |  0,33  |
-| 3      | Risco               | CDS Brasil (5 anos) e VIX                                                    |  0,18  |
-| 4      | Moedas              | US dollar indexes (desenvolvidos, emergentes), taxa de câmbio (R\$/US\$)     |  0,20  |
-| 5      | Petróleo            | Cotações em US$ do barril de petróleo (WTI e Brent)                          |  0,23  |
-| 6      | Commodities         | Índices de commodities CRB (foodstuffs, metals)                              | -0,13  |
-| 7      | Mercado de capitais | Índices de ações MSCI (desenvolvidos, emergentes) e Ibovespa                 | -0,15  |
+| Grupos | Nomes               | Séries                                                                       | Pesos |
+|--------|---------------------|------------------------------------------------------------------------------|-------|
+| 1      | Juros Brasil        | Taxas de juros (Swap Pré-DI) de 1 e 5 anos                                   |  0,34 |
+| 2      | Juros exterior      | Taxas de juros dos EUA, Reino Unido, Alemanha e Japão (3 meses, 2 e 10 anos) |  0,33 |
+| 3      | Risco               | CDS Brasil (5 anos) e VIX                                                    |  0,18 |
+| 4      | Moedas              | US dollar indexes (desenvolvidos, emergentes), taxa de câmbio (R\$/US\$)       |  0,20 |
+| 5      | Petróleo            | Cotações em US$ do barril de petróleo (WTI e Brent)                          |  0,23 |
+| 6      | Commodities         | Índices de commodities CRB (foodstuffs, metals)                              | -0,13 |
+| 7      | Mercado de capitais | Índices de ações MSCI (desenvolvidos, emergentes) e Ibovespa                 | -0,15 |
 
 ## Metodologia para construção do ICF
 
@@ -84,7 +78,7 @@ principais dos grupos, um intercepto e uma variável dummy para a crise global d
 ### Estado dos dados
 
 | Série                                         | Status | Fonte     |
-| :-------------------------------------------- | :----: | :-------: |
+|-----------------------------------------------|--------|-----------|
 | Swap Pré-DI 1 ano                             | ok!    | Bloomberg |
 | Swap Pré-DI 5 anos                            | ok!    | Bloomberg |
 | Juros EUA 3 meses                             | ok!    | Bloomberg |
