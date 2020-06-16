@@ -1,38 +1,16 @@
-# Séries do ICF
+# Índice de Condições Financeiras (ICF)
 
-### Juros
+[TOC]
 
-- Swap Pré x DI - 1 e 5 anos
-- EUA - 3 meses, 2 e 10 anos
-- Reino Unido - 3 meses, 2 e 10 anos
-- Alemanha - 3 meses, 2 e 10 anos
-- Japão - 3 meses, 2 e 10 anos
+## Apresentação
 
-### Risco
+Construção de um Índice de Condições Financeiras com base em Bacen (2020).
 
-- CDS Brasil - 5 anos
-- VIX
+## Componentes do ICF
 
-### Moeda
+Dados utilizados na nota do Banco Central:
 
-- US dollar indexes (desenvolvidos e emergentes)
-- Taxa de câmbio (R$ / US)
-
-### Petróleo
-
-- Barril WTI
-- Barril Brent
-
-### Commodities
-
-- CRB 
-
-### Mercado de capitais
-
-- Ações MSCI (desenvolvidos e emergentes)
-- Ibovespa
-
-## Dados utilizados na nota do Banco Central
+**Tabela 1: Componentes do ICF**
 
 | Grupos | Nomes               | Séries                                                                       | Pesos |
 |--------|---------------------|------------------------------------------------------------------------------|-------|
@@ -44,33 +22,87 @@
 | 6      | Commodities         | Índices de commodities CRB (foodstuffs, metals)                              | -0,13 |
 | 7      | Mercado de capitais | Índices de ações MSCI (desenvolvidos, emergentes) e Ibovespa                 | -0,15 |
 
-## Estado dos dados
+## Metodologia para construção do ICF
 
-| Séries                                        | Status | Fonte |
-|-----------------------------------------------|--------|-------|
-| Swap Pré-DI 1 ano                             | ok! | Bloomberg |
-| Swap Pré-DI 5 anos                            | ok! | Bloomberg |
-| Juros EUA 3 meses                             | ok! | Bloomberg |
-| Juros EUA 2 anos                              | ok! | Bloomberg |
-| Juros EUA 10 anos                             | ok! | Bloomberg |
-| Juros Reino Unido 3 meses                     |        |       |
-| Juros Reino Unido 2 anos                      |        |       |
-| Juros Reino Unido 10 anos                     |        |       |
-| Juros Alemanha 3 meses                        |        |       |
-| Juros Alemanha 2 anos                         |        |       |
-| Juros Alemanha 10 anos                        |        |       |
-| Juros Japão 3 meses                           |        |       |
-| Juros Japão 2 anos                            |        |       |
-| Juros Japão 10 anos                           |        |       |
-| CDS Brasil (5 anos)                           | ok! | Bloomberg |
-| VIX                                           | ok! | Bloomberg |
-| US dollar indexes (desenvolvidos)             |        |       |
-| US dollar indexes (emergentes)                |        |       |
-| Taxa de câmbio (R\$/US\$)                     | ok! | Bloomberg |
-| Cotações em US$ do barril de petróleo (WTI)   | ok! | Bloomberg |
-| Cotações em US$ do barril de petróleo (Brent) | ok! | Bloomberg |
-| Índices de commodities CRB (foodstuffs)       | ok! | Bloomberg |
-| Índices de commodities CRB (metals)           | ok! | Bloomberg |
-| Índices de ações MSCI (desenvolvidos)         | ok! | Bloomberg |
-| Índices de ações MSCI (emergentes)            | ok! | Bloomberg |
-| Ibovespa                                      | ok! | Bloomberg |
+Etapas para construção do ICF conforme sugerido pelo Bacen (2020):
+
+1. remoção da tendência das séries dos grupos 4 até 7;
+2. padronização de todas as séries, de modo a apresentarem média zero e variância unitária;
+3. extração do primeira componente principal de cada grupo de variáveis;
+4. cálculo da média ponderada das referidas componentes principais utilizando os pesos da Tabela 1;
+5. definição do ICF como a média ponderada da etapa anterior, padronizada para apresentar média zero e variância unitária na amostra considerada.
+
+Os pesos apresentados provêm de regressões capturando a capacidade de os componentes principais de cada grupo trazerem informação sobre a variação futura do Índice de Atividade Econômica do Banco Central (IBC-Br).
+
+As regressões têm a taxa de variação em seis meses do IBC-Br como variável dependente. Como regressores, utilizam-se as primeiras componentes
+principais dos grupos, um intercepto e uma variável dummy para a crise global de 2008.
+
+## Replicação do ICF
+
+### Estratégias a serem adotadas
+
+1. Utilizar inicialmente os pesos calculados pelo Bacen (2020);
+2. Fazer o próprio cálculo dos pesos.
+
+### Códigos das séries
+
+| Série                                         |   Código    |
+| :-------------------------------------------- | :---------: |
+| Swap Pré-DI 1 ano                             | juros1a_br  |
+| Swap Pré-DI 5 anos                            | juros5a_br  |
+| Juros EUA 3 meses                             | juros3m_us  |
+| Juros EUA 2 anos                              | juros2a_us  |
+| Juros EUA 10 anos                             | juros10a_us |
+| Juros Reino Unido 3 meses                     | juros3m_uk  |
+| Juros Reino Unido 2 anos                      | juros2a_uk  |
+| Juros Reino Unido 10 anos                     | juros10a_uk |
+| Juros Alemanha 3 meses                        | juros3m_de  |
+| Juros Alemanha 2 anos                         | juros2a_de  |
+| Juros Alemanha 10 anos                        | juros10a_de |
+| Juros Japão 3 meses                           | juros3m_jp  |
+| Juros Japão 2 anos                            | juros2a_jp  |
+| Juros Japão 10 anos                           | juros10a_jp |
+| CDS Brasil (5 anos)                           |   cds_br    |
+| VIX                                           |     vix     |
+| US dollar indexes (desenvolvidos)             | dxy_desenv  |
+| US dollar indexes (emergentes)                |  dxy_emerg  |
+| Taxa de câmbio (R\$/US\$)                     |   cambio    |
+| Cotações em US$ do barril de petróleo (WTI)   | petro_brent |
+| Cotações em US$ do barril de petróleo (Brent) |  petro_wti  |
+| Índices de commodities CRB (foodstuffs)       |  crb_metal  |
+| Índices de commodities CRB (metals)           |  crb_food   |
+| Índices de ações MSCI (desenvolvidos)         | msci_desenv |
+| Índices de ações MSCI (emergentes)            | msci_emerg  |
+| Ibovespa                                      |  ibovespa   |
+
+### Estado dos dados
+
+| Série                                         | Status | Fonte     |
+|-----------------------------------------------|--------|-----------|
+| Swap Pré-DI 1 ano                             | ok!    | Bloomberg |
+| Swap Pré-DI 5 anos                            | ok!    | Bloomberg |
+| Juros EUA 3 meses                             | ok!    | Bloomberg |
+| Juros EUA 2 anos                              | ok!    | Bloomberg |
+| Juros EUA 10 anos                             | ok!    | Bloomberg |
+| Juros Reino Unido 3 meses                     |        |           |
+| Juros Reino Unido 2 anos                      |        |           |
+| Juros Reino Unido 10 anos                     |        |           |
+| Juros Alemanha 3 meses                        |        |           |
+| Juros Alemanha 2 anos                         |        |           |
+| Juros Alemanha 10 anos                        |        |           |
+| Juros Japão 3 meses                           |        |           |
+| Juros Japão 2 anos                            |        |           |
+| Juros Japão 10 anos                           |        |           |
+| CDS Brasil (5 anos)                           | ok!    | Bloomberg |
+| VIX                                           | ok!    | Bloomberg |
+| US dollar indexes (desenvolvidos)             |        |           |
+| US dollar indexes (emergentes)                |        |           |
+| Taxa de câmbio (R\$/US\$)                     | ok!    | Bloomberg |
+| Cotações em US$ do barril de petróleo (WTI)   | ok!    | Bloomberg |
+| Cotações em US$ do barril de petróleo (Brent) | ok!    | Bloomberg |
+| Índices de commodities CRB (foodstuffs)       | ok!    | Bloomberg |
+| Índices de commodities CRB (metals)           | ok!    | Bloomberg |
+| Índices de ações MSCI (desenvolvidos)         | ok!    | Bloomberg |
+| Índices de ações MSCI (emergentes)            | ok!    | Bloomberg |
+| Ibovespa                                      | ok!    | Bloomberg |
+

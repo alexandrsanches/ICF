@@ -5,7 +5,7 @@ dados1_temp <- read_excel("Dados/bm&f.xlsx", sheet = "Swaps", skip = 13,
                                         "skip", "skip", "skip", "skip", "skip", "skip", "skip",
                                         "skip"))
 
-colnames(dados1_temp) <- c("obs", "juros_360d_br") # Não tem o de 5 anos. No BCB a de 360 dias tem no Bacen (código 7806)
+colnames(dados1_temp) <- c("obs", "juros1a_br") # Não tem o de 5 anos. No BCB a de 360 dias tem no Bacen (código 7806)
 
 dados2_temp <- read_excel("Dados/credit_Default_Swap.xlsx", sheet = "CDS", skip = 11,
                           col_types = c("date", "skip", "skip", "skip", "skip", "skip", "skip",
@@ -26,7 +26,7 @@ dados4_temp <- read_excel("Dados/Commodity_research_bureau.xlsx", sheet = "CRB F
                                         "numeric", "skip", "skip", "numeric", "skip",
                                         "skip", "skip"))
 
-colnames(dados4_temp) <- c("obs", "crb_metals", "crb_foodstuffs")
+colnames(dados4_temp) <- c("obs", "crb_metal", "crb_food")
 
 dados5_temp <- read_excel("Dados/Commodities_spot.xlsx", sheet = "Energia", skip = 11,
                           col_types = c("date", "numeric", "numeric", "skip", "skip", "skip", "skip",
@@ -48,7 +48,7 @@ dados8_temp <- read_excel("Dados/Indicadores.xlsx", sheet = "Treasuries", skip =
                           col_types = c("date", "skip", "numeric", "skip", "skip", "numeric",
                                         "skip", "skip", "skip", "numeric", "skip", "skip"))
 
-colnames(dados8_temp) <- c("obs", "juros_us_3m", "juros_us_2a", "juros_us_10a")
+colnames(dados8_temp) <- c("obs", "juros3m_us", "juros2a_us", "juros10a_us")
 
 #### Conversão para xts ####
 
