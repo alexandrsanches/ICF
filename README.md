@@ -62,8 +62,8 @@
 | Juros Japão 3 meses                           |        |       |
 | Juros Japão 2 anos                            |        |       |
 | Juros Japão 10 anos                           |        |       |
-| CDS Brasil (5 anos)                           | ok! | LCA |
-| VIX                                           | ok! | LCA |
+| CDS Brasil (5 anos)                           | ok! | Bloomberg |
+| VIX                                           | ok! | Bloomberg |
 | US dollar indexes (desenvolvidos)             |        |       |
 | US dollar indexes (emergentes)                |        |       |
 | Taxa de câmbio (R\$/US\$)                     | ok! | LCA |
