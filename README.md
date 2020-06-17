@@ -87,7 +87,7 @@ principais dos grupos, um intercepto e uma variável dummy para a crise global d
 | Juros Reino Unido 3 meses                     | ok!    | Bloomberg |
 | Juros Reino Unido 2 anos                      | ok!    | Bloomberg |
 | Juros Reino Unido 10 anos                     | ok!    | Bloomberg |
-| Juros Alemanha 3 meses                        |        |           |
+| Juros Alemanha 3 meses                        | ok!    | Bloomberg |
 | Juros Alemanha 2 anos                         | ok!    | Bloomberg |
 | Juros Alemanha 10 anos                        | ok!    | Bloomberg |
 | Juros Japão 3 meses                           | ok!    | Bloomberg |
@@ -95,8 +95,8 @@ principais dos grupos, um intercepto e uma variável dummy para a crise global d
 | Juros Japão 10 anos                           | ok!    | Bloomberg |
 | CDS Brasil (5 anos)                           | ok!    | Bloomberg |
 | VIX                                           | ok!    | Bloomberg |
-| US dollar indexes (desenvolvidos)             |        |           |
-| US dollar indexes (emergentes)                |        |           |
+| US dollar indexes (desenvolvidos)             | ok!    | Bloomberg |
+| US dollar indexes (emergentes)                | ok!    | Bloomberg |
 | Taxa de câmbio (R\$/US\$)                     | ok!    | Bloomberg |
 | Cotações em US$ do barril de petróleo (WTI)   | ok!    | Bloomberg |
 | Cotações em US$ do barril de petróleo (Brent) | ok!    | Bloomberg |
