@@ -5,20 +5,10 @@ library(lubridate)
 library(tidyverse)
 library(xts)
 
-loadb <- function(ticker, xts = TRUE) {
-    
-    if(xts == TRUE) {
-        
-        data <- bdh(ticker, c("PX_LAST"), start.date = ymd("2000-01-01"), options = c("periodicitySelection" = "DAILY"))
-        data <- xts(data, order.by = data[,1])
-        data <- data[,-1]    
-        
-    } else if(xts == FALSE) {
-        
+loadb <- function(ticker) {
+
         data <- bdh(ticker, c("PX_LAST"), start.date = ymd("2000-01-01"), options = c("periodicitySelection" = "DAILY"))
         
-    }
-    
 }
 
 ### Load bloomberg terminal
@@ -26,6 +16,7 @@ loadb <- function(ticker, xts = TRUE) {
 blpConnect()
 
 ## Juro Brasil
+
 ({
 juros1a_br <- loadb("BCSWFPD BGN Curncy")
 juros5a_br <- loadb("BCSWNPD BGN Curncy")
@@ -48,7 +39,7 @@ juros3m_de <- loadb("I01603M Index")
 juros2a_de <- loadb("GDBR2 Index")
 juros10a_de <- loadb("GDBR10 Index")
 
-# Japão
+# Jap?o
 juros3m_jp <- loadb("GJGB3M Index")
 juros2a_jp <- loadb("GJGB2 Index")
 juros10a_jp <- loadb("GJGB10 Index")
@@ -67,7 +58,7 @@ crb_food <- loadb("CRB FOOD Index")
 crb_metal <- loadb("CRB METL Index")
 })
 
-## Petróleo
+## Petr?leo
 ({
 petro_wti <- loadb("CL1 Comdty")
 petro_brent <- loadb("CO1 Comdty")
@@ -75,8 +66,8 @@ petro_brent <- loadb("CO1 Comdty")
 
 ## Risco
 ({
-cds_br <- loadb("CBRZ1U5 CBIN Curncy", xts = F)
-vix <- loadb("VIX Index", xts = F)
+cds_br <- loadb("CBRZ1U5 CBIN Curncy")
+vix <- loadb("VIX Index")
 })
 
 ## Mercado de capitais
