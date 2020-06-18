@@ -56,13 +56,13 @@ moeda
 #### Gráfico unificado
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
-wti_brent
+petro_separado
 ```
 
 #### Gráfico separado
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
-petro_separado
+wti_brent
 ```
 
 ### Risco
