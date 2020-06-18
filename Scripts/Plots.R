@@ -149,3 +149,4 @@ risk <- risco %>%
     theme(legend.position = "bottom") +
     theme(panel.background = element_rect(fill = "white", colour = "grey10")) +
     theme(panel.grid.major = element_line(colour = "gray", linetype = "dashed"))
+

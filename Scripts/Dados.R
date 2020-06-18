@@ -9,13 +9,16 @@ library(xts)
 
 blpConnect()
 
+
+if(serie == "original") {
+
 #### Séries originais
 
 ## Juro Brasil
 
 ({
-    juros1a_br <- loadb("BCSFLPDV CMPN Curncy")
-    juros5a_br <- loadb("BCSFSPDV CMPN Curncy")
+    juros1a_br <- b("BCSFLPDV CMPN Curncy")
+    juros5a_br <- b("BCSFSPDV CMPN Curncy")
 })
 
 colnames(juros1a_br) <- c("data", "juro1a_br")
@@ -31,9 +34,9 @@ juroBrasil <- list(juros1a_br, juros5a_br) %>%
 
 # EUA
 ({
-    juros3m_us <- loadb("H15T3M Index")
-    juros2a_us <- loadb("H15T2Y Index")
-    juros10a_us <- loadb("H15T10Y Index")
+    juros3m_us <- b("H15T3M Index")
+    juros2a_us <- b("H15T2Y Index")
+    juros10a_us <- b("H15T10Y Index")
 })
 
 colnames(juros3m_us) <- c("data", "juros3m_us")
@@ -42,9 +45,9 @@ colnames(juros10a_us) <- c("data", "juros10a_us")
 
 # Reino Unido
 ({
-    juros3m_uk <- loadb("GUKG3M Index")
-    juros2a_uk <- loadb("GUKG2 Index")
-    juros10a_uk <- loadb("GUKG10 Index")
+    juros3m_uk <- b("GUKG3M Index")
+    juros2a_uk <- b("GUKG2 Index")
+    juros10a_uk <- b("GUKG10 Index")
 })
 
 colnames(juros3m_uk) <- c("data", "juros3m_uk")
@@ -53,9 +56,9 @@ colnames(juros10a_uk) <- c("data", "juros10a_uk")
 
 # Alemanha
 ({
-    juros3m_de <- loadb("I01603M Index")
-    juros2a_de <- loadb("GDBR2 Index")
-    juros10a_de <- loadb("GDBR10 Index")
+    juros3m_de <- b("I01603M Index")
+    juros2a_de <- b("GDBR2 Index")
+    juros10a_de <- b("GDBR10 Index")
 })
 
 colnames(juros3m_de) <- c("data", "juros3m_de")
@@ -64,9 +67,9 @@ colnames(juros10a_de) <- c("data", "juros10a_de")
 
 # Jap?o
 ({
-    juros3m_jp <- loadb("GJGB3M Index")
-    juros2a_jp <- loadb("GJGB2 Index")
-    juros10a_jp <- loadb("GJGB10 Index")
+    juros3m_jp <- b("GJGB3M Index")
+    juros2a_jp <- b("GJGB2 Index") 
+    juros10a_jp <- b("GJGB10 Index")
 })
 
 colnames(juros3m_jp) <- c("data", "juros3m_jp")
@@ -86,8 +89,8 @@ rm(list = ls(pattern = "_"))
 
 ## Risco
 ({
-    cds_br <- loadb("CBRZ1U5 CBIN Curncy")
-    vix <- loadb("VIX Index")
+    cds_br <- b("CBRZ1U5 CBIN Curncy")
+    vix <- b("VIX Index")
 })
 
 colnames(cds_br) <- c("data", "cds_br")
@@ -104,9 +107,9 @@ rm(cds_br, vix)
 ## Moedas
 
 ({
-    cambio <- loadb("BZFXPTAX Index")
-    dxy_desenv <- loadb("DXY Curncy")
-    dxy_emerg <- loadb("FXJPEMCS Index")
+    cambio <- b("BZFXPTAX Index")
+    dxy_desenv <- b("DXY Curncy") 
+    dxy_emerg <- b("FXJPEMCS Index")
 })
 
 colnames(cambio) <- c("data", "cambio")
@@ -123,8 +126,8 @@ rm(cambio, list = ls(pattern = "dxy"))
 
 ## Petróleo
 ({
-    petro_wti <- loadb("CL1 Comdty")
-    petro_brent <- loadb("CO1 Comdty")
+    petro_wti <- b("CL1 Comdty")
+    petro_brent <- b("CO1 Comdty")
 })
 
 colnames(petro_wti) <- c("data", "petro_wti")
@@ -140,8 +143,8 @@ rm(list = ls(pattern = "_"))
 
 ## Commodities
 ({
-    crb_food <- loadb("CRB FOOD Index")
-    crb_metal <- loadb("CRB METL Index")
+    crb_food <- b("CRB FOOD Index")
+    crb_metal <- b("CRB METL Index") 
 })
 
 colnames(crb_food) <- c("data", "crb_food")
@@ -157,9 +160,9 @@ rm(list = ls(pattern = "crb"))
 
 ## Mercado de capitais
 ({
-    msci_emerg <- loadb("MXEF Index")
-    msci_desenv <- loadb("MXWO Index")
-    ibovespa <- loadb("IBOV Index")
+    msci_emerg <- b("MXEF Index")
+    msci_desenv <- b("MXWO Index") 
+    ibovespa <- b("IBOV Index") 
 })
 
 colnames(msci_emerg) <- c("data", "msci_emerg")
@@ -174,13 +177,15 @@ mercCapitais <- list(msci_emerg, msci_desenv, ibovespa) %>%
 
 rm(ibovespa, list = ls(pattern = "msci"))
 
+} else if (serie == "padrao") {
+
 #### Séries padronizadas
 
 ## Juro Brasil
 
 ({
-    juros1a_br <- padronizar(loadb("BCSFLPDV CMPN Curncy"))
-    juros5a_br <- padronizar(loadb("BCSFSPDV CMPN Curncy"))
+    juros1a_br <- sdev(b("BCSFLPDV CMPN Curncy"))
+    juros5a_br <- sdev(b("BCSFSPDV CMPN Curncy"))
 })
 
 colnames(juros1a_br) <- c("data", "juro1a_br")
@@ -190,15 +195,15 @@ juroBrasil <- list(juros1a_br, juros5a_br) %>%
     join_all(by = "data") %>%
     arrange(data) 
 
-#juroBrasil <- xts(juroBrasil[,-1], order.by = juroBrasil$data)
+juroBrasil <- xts(juroBrasil[,-1], order.by = juroBrasil$data)
 
 ## Juro internacional
 
 # EUA
 ({
-    juros3m_us <- padronizar(loadb("H15T3M Index"))
-    juros2a_us <- padronizar(loadb("H15T2Y Index"))
-    juros10a_us <- padronizar(loadb("H15T10Y Index"))
+    juros3m_us <- sdev(b("H15T3M Index"))
+    juros2a_us <- sdev(b("H15T2Y Index"))
+    juros10a_us <- sdev(b("H15T10Y Index"))
 })
 
 colnames(juros3m_us) <- c("data", "juros3m_us")
@@ -207,9 +212,9 @@ colnames(juros10a_us) <- c("data", "juros10a_us")
 
 # Reino Unido
 ({
-    juros3m_uk <- padronizar(loadb("GUKG3M Index"))
-    juros2a_uk <- padronizar(loadb("GUKG2 Index"))
-    juros10a_uk <- padronizar(loadb("GUKG10 Index"))
+    juros3m_uk <- sdev(b("GUKG3M Index"))
+    juros2a_uk <- sdev(b("GUKG2 Index"))
+    juros10a_uk <- sdev(b("GUKG10 Index"))
 })
 
 colnames(juros3m_uk) <- c("data", "juros3m_uk")
@@ -218,20 +223,20 @@ colnames(juros10a_uk) <- c("data", "juros10a_uk")
 
 # Alemanha
 ({
-    juros3m_de <- padronizar(loadb("I01603M Index"))
-    juros2a_de <- padronizar(loadb("GDBR2 Index"))
-    juros10a_de <- padronizar(loadb("GDBR10 Index"))
+    juros3m_de <- sdev(b("I01603M Index"))
+    juros2a_de <- sdev(b("GDBR2 Index"))
+    juros10a_de <- sdev(b("GDBR10 Index"))
 })
 
 colnames(juros3m_de) <- c("data", "juros3m_de")
 colnames(juros2a_de) <- c("data", "juros2a_de")
 colnames(juros10a_de) <- c("data", "juros10a_de")
     
-# Jap?o
+# Japão
 ({
-    juros3m_jp <- padronizar(loadb("GJGB3M Index"))
-    juros2a_jp <- padronizar(loadb("GJGB2 Index"))
-    juros10a_jp <- padronizar(loadb("GJGB10 Index"))
+    juros3m_jp <- sdev(b("GJGB3M Index"))
+    juros2a_jp <- sdev(b("GJGB2 Index"))
+    juros10a_jp <- sdev(b("GJGB10 Index"))
 })
 
 colnames(juros3m_jp) <- c("data", "juros3m_jp")
@@ -245,14 +250,14 @@ juroExterior <- list(juros3m_us, juros2a_us, juros10a_us,
     join_all(by = "data") %>%
     arrange(data)
 
-#juroExterior <- xts(juroExterior[,-1], order.by = juroExterior$data)
+juroExterior <- xts(juroExterior[,-1], order.by = juroExterior$data)
 
 rm(list = ls(pattern = "_"))
 
 ## Risco
 ({
-    cds_br <- padronizar(loadb("CBRZ1U5 CBIN Curncy"))
-    vix <- padronizar(loadb("VIX Index"))
+    cds_br <- sdev(b("CBRZ1U5 CBIN Curncy"))
+    vix <- sdev(b("VIX Index"))
 })
 
 colnames(cds_br) <- c("data", "cds_br")
@@ -262,16 +267,22 @@ risco <- list(cds_br, vix) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-#risco <- xts(risco[,-1], order.by = risco$data)
+risco <- xts(risco[,-1], order.by = risco$data)
 
 rm(cds_br, vix)
 
 ## Moedas
 
 ({
-    cambio <- padronizar(loadb("BZFXPTAX Index"))
-    dxy_desenv <- padronizar(loadb("DXY Curncy"))
-    dxy_emerg <- padronizar(loadb("FXJPEMCS Index"))
+    cambio <- b("BZFXPTAX Index") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
+    dxy_desenv <- b("DXY Curncy") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
+    dxy_emerg <- b("FXJPEMCS Index")  %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
 })
 
 colnames(cambio) <- c("data", "cambio")
@@ -282,14 +293,18 @@ moedas <- list(cambio, dxy_desenv, dxy_emerg) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-#moedas <- xts(moedas[,-1], order.by = moedas$data)
+moedas <- xts(moedas[,-1], order.by = moedas$data)
 
 rm(cambio, list = ls(pattern = "dxy"))
 
 ## Petróleo
 ({
-    petro_wti <- padronizar(loadb("CL1 Comdty"))
-    petro_brent <- padronizar(loadb("CO1 Comdty"))
+    petro_wti <- b("CL1 Comdty") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
+    petro_brent <- b("CO1 Comdty") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
 })
 
 colnames(petro_wti) <- c("data", "petro_wti")
@@ -299,14 +314,18 @@ petroleo <- list(petro_wti, petro_brent) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-#petroleo <- xts(petroleo[,-1], order.by = petroleo$data)
+petroleo <- xts(petroleo[,-1], order.by = petroleo$data)
 
 rm(list = ls(pattern = "_"))
 
 ## Commodities
 ({
-    crb_food <- padronizar(loadb("CRB FOOD Index"))
-    crb_metal <- padronizar(loadb("CRB METL Index"))
+    crb_food <- b("CRB FOOD Index") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
+    crb_metal <- b("CRB METL Index") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
 })
 
 colnames(crb_food) <- c("data", "crb_food")
@@ -316,15 +335,21 @@ commodities <- list(crb_food, crb_metal) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-#commodities <- xts(commodities[,-1], order.by = commodities$data)
+commodities <- xts(commodities[,-1], order.by = commodities$data)
 
 rm(list = ls(pattern = "crb"))
 
 ## Mercado de capitais
 ({
-    msci_emerg <- padronizar(loadb("MXEF Index"))
-    msci_desenv <- padronizar(loadb("MXWO Index"))
-    ibovespa <- padronizar(loadb("IBOV Index"))
+    msci_emerg <- b("MXEF Index") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
+    msci_desenv <- b("MXWO Index") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
+    ibovespa <- b("IBOV Index") %>%
+        mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
+        sdev()
 })
 
 colnames(msci_emerg) <- c("data", "msci_emerg")
@@ -335,10 +360,13 @@ mercCapitais <- list(msci_emerg, msci_desenv, ibovespa) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-#mercCapitais <- xts(mercCapitais[,-1], order.by = mercCapitais$data)
+mercCapitais <- xts(mercCapitais[,-1], order.by = mercCapitais$data)
 
 rm(ibovespa, list = ls(pattern = "msci"))
 
+codigo <- ls(pattern = "o")
+
+}
 #### Dados antigos ####
 
 ## Obtenção dos dados de planilhas 
@@ -424,16 +452,17 @@ rm(ibovespa, list = ls(pattern = "msci"))
 
 ## Remoção dos valores NA dentro das séries 
 
-#dados$vix["2020-06"] <- NA
+juroExterior
 
-#max_data_disponivel_temp <- max(as.Date(unlist(lapply(dados, FUN = function(x) {end(na.omit(x))}))))
-#min_data_disponivel_temp <- min(as.Date(unlist(lapply(dados, FUN = function(x) {end(na.omit(x))}))))
-#
-#dados <- dados[paste0("/", max_data_disponivel_temp)]
-#dados <- merge(temp = index(dados) <= as.Date(min_data_disponivel_temp), dados)
-#
-#dados <- rbind(na.omit(dados[dados$temp == 1,]),
-#               dados[dados$temp == 0,])[, -1]
+dados$vix["2020-06"] <- NA
+max_data_disponivel_temp <- max(as.Date(unlist(lapply(juroExterior, FUN = function(x) {end(na.omit(x))}))))
+min_data_disponivel_temp <- min(as.Date(unlist(lapply(juroExterior, FUN = function(x) {end(na.omit(x))}))))
+
+juroExterior <- juroExterior[paste0("/", max_data_disponivel_temp)]
+juroExterior <- merge(temp = index(juroExterior) <= as.Date(min_data_disponivel_temp), juroExterior)
+
+juroExterior <- rbind(na.omit(juroExterior[juroExterior$temp == 1,]),
+                    juroExterior[juroExterior$temp == 0,])[, -1]
 
 ## Limpeza do ambiente 
 

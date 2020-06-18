@@ -1,12 +1,12 @@
 #### Funções
 
-loadb <- function(ticker) {
+b <- function(ticker) {
     
     data <- bdh(ticker, c("PX_LAST"), start.date = ymd("2000-01-01"), options = c("periodicitySelection" = "DAILY"))
     
 }
 
-padronizar <- function(objeto) {
+sdev <- function(objeto) {
     
     media <- mean(objeto[,2])
     desv_pad <- sd(objeto[,2])

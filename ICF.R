@@ -3,7 +3,7 @@
 switch (Sys.info()["sysname"],
     Linux = setwd("~/Desenvolvimento/SPE/Indicador de Condições Financeiras"),
     Darwin = setwd("~/Documents/GitHub/Indicador de Condições Financeiras"),
-    Windows = setwd("~/Documents/Indicador de Condições Financeiras")
+    Windows = setwd("~/ICF")
 )
 
 #### Load packages and functions #### 
@@ -12,21 +12,37 @@ suppressPackageStartupMessages({
     library(xts)
     library(readxl)
     library(bizdays)
+    library(plyr)
+    library(Rblpapi)
+    library(tidyverse)
+    library(reshape2)
+    library(rmarkdown)
+    library(knitr) 
 })
 
-#source("Scripts/Functions.R", encoding = "utf8")
+source("Scripts/Functions.R", encoding = "utf8")
 
 #### Import data ####
+
+serie <- "padrao"
 
 source("Scripts/Dados.R", encoding = "utf8")
 
 #### Data transformation ####
 
+pca <- prcomp(juroExterior)
+
+pc.var <- pca$sdev^2
+pc.var.per <- round(pc.var / sum (pc.var) * 100, 1)
+
+
 # Avaliar tranformações em variação, log, etc.
-# Normalizar dados
+# Padronizar dados
 # Avaliar a questão das defasagens (talvez eu possa usar o mesmo procedimento que uso nos modelos via AutoMod e XGBoost)
 
 #### Index construction ####
+
+
 
 #### Plots #####
 
@@ -38,7 +54,7 @@ source("Scripts/Tables.R", encoding = "utf8")
 
 #### Save data for Markdown rendering #### 
 
-save.image(file = "Resultados/Informações para o relatório.RData") 
+save.image(file = "Dados/Informações para o relatório.RData") 
 
 #### Render R Markdown ####
 
@@ -56,5 +72,5 @@ render(input = "Scripts/Final (HTML).Rmd",
        encoding = "UTF-8",
        quiet = TRUE)
 
-file.rename(from = "Resultados/Final (HTML).html",
+ file.rename(from = "Resultados/Final (HTML).html",
             to = paste0("Resultados/Indicador de Condições Financeiras - ", max(dados$data), ".html"))
