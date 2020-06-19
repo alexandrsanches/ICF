@@ -17,7 +17,7 @@ if(serie == "original") {
 ## Juro Brasil
 
 ({
-    juros1a_br <- b("BCSFLPDV CMPN Curncy")
+    juros1a_br <- b("BCSFLPDV CMPN Curncy") 
     juros5a_br <- b("BCSFSPDV CMPN Curncy")
 })
 
@@ -193,9 +193,10 @@ colnames(juros5a_br) <- c("data", "juro5a_br")
 
 juroBrasil <- list(juros1a_br, juros5a_br) %>%
     join_all(by = "data") %>%
-    arrange(data) 
+    arrange(data)
 
-juroBrasil <- xts(juroBrasil[,-1], order.by = juroBrasil$data)
+juroBrasil <- xts(juroBrasil[,-1], order.by = juroBrasil$data) %>%
+    removeNA()
 
 ## Juro internacional
 
@@ -246,11 +247,12 @@ colnames(juros10a_jp) <- c("data", "juros10a_jp")
 juroExterior <- list(juros3m_us, juros2a_us, juros10a_us,
          juros3m_uk, juros2a_uk, juros10a_uk,
          juros3m_de, juros2a_de, juros10a_de,
-         juros3m_jp, juros3m_jp, juros10a_jp) %>%
+         juros3m_jp, juros2a_jp, juros10a_jp) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-juroExterior <- xts(juroExterior[,-1], order.by = juroExterior$data)
+juroExterior <- xts(juroExterior[,-1], order.by = juroExterior$data) %>%
+    removeNA()
 
 rm(list = ls(pattern = "_"))
 
@@ -267,7 +269,8 @@ risco <- list(cds_br, vix) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-risco <- xts(risco[,-1], order.by = risco$data)
+risco <- xts(risco[,-1], order.by = risco$data) %>%
+    removeNA()
 
 rm(cds_br, vix)
 
@@ -293,7 +296,8 @@ moedas <- list(cambio, dxy_desenv, dxy_emerg) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-moedas <- xts(moedas[,-1], order.by = moedas$data)
+moedas <- xts(moedas[,-1], order.by = moedas$data) %>%
+    removeNA()
 
 rm(cambio, list = ls(pattern = "dxy"))
 
@@ -314,7 +318,8 @@ petroleo <- list(petro_wti, petro_brent) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-petroleo <- xts(petroleo[,-1], order.by = petroleo$data)
+petroleo <- xts(petroleo[,-1], order.by = petroleo$data) %>%
+    removeNA()
 
 rm(list = ls(pattern = "_"))
 
@@ -335,7 +340,8 @@ commodities <- list(crb_food, crb_metal) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-commodities <- xts(commodities[,-1], order.by = commodities$data)
+commodities <- xts(commodities[,-1], order.by = commodities$data) %>%
+    removeNA()
 
 rm(list = ls(pattern = "crb"))
 
@@ -360,11 +366,10 @@ mercCapitais <- list(msci_emerg, msci_desenv, ibovespa) %>%
     join_all(by = "data") %>%
     arrange(data)
 
-mercCapitais <- xts(mercCapitais[,-1], order.by = mercCapitais$data)
+mercCapitais <- xts(mercCapitais[,-1], order.by = mercCapitais$data) %>%
+    removeNA()
 
 rm(ibovespa, list = ls(pattern = "msci"))
-
-codigo <- ls(pattern = "o")
 
 }
 #### Dados antigos ####
@@ -452,17 +457,17 @@ codigo <- ls(pattern = "o")
 
 ## Remoção dos valores NA dentro das séries 
 
-juroExterior
+#juroExterior
 
-dados$vix["2020-06"] <- NA
-max_data_disponivel_temp <- max(as.Date(unlist(lapply(juroExterior, FUN = function(x) {end(na.omit(x))}))))
-min_data_disponivel_temp <- min(as.Date(unlist(lapply(juroExterior, FUN = function(x) {end(na.omit(x))}))))
+#dados$vix["2020-06"] <- NA
+#max_data_disponivel_temp <- max(as.Date(unlist(lapply(juroExterior, FUN = function(x) {end(na.omit(x))}))))
+#min_data_disponivel_temp <- min(as.Date(unlist(lapply(juroExterior, FUN = function(x) {end(na.omit(x))}))))
 
-juroExterior <- juroExterior[paste0("/", max_data_disponivel_temp)]
-juroExterior <- merge(temp = index(juroExterior) <= as.Date(min_data_disponivel_temp), juroExterior)
+#juroExterior <- juroExterior[paste0("/", max_data_disponivel_temp)]
+#juroExterior <- merge(temp = index(juroExterior) <= as.Date(min_data_disponivel_temp), juroExterior)
 
-juroExterior <- rbind(na.omit(juroExterior[juroExterior$temp == 1,]),
-                    juroExterior[juroExterior$temp == 0,])[, -1]
+#juroExterior <- rbind(na.omit(juroExterior[juroExterior$temp == 1,]),
+#                    juroExterior[juroExterior$temp == 0,])[, -1]
 
 ## Limpeza do ambiente 
 

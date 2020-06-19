@@ -18,6 +18,7 @@ suppressPackageStartupMessages({
     library(reshape2)
     library(rmarkdown)
     library(knitr) 
+    library(urca)
 })
 
 source("Scripts/Functions.R", encoding = "utf8")
@@ -30,11 +31,10 @@ source("Scripts/Dados.R", encoding = "utf8")
 
 #### Data transformation ####
 
-pca <- prcomp(juroExterior)
+pca <- prcomp(moedas)
 
 pc.var <- pca$sdev^2
 pc.var.per <- round(pc.var / sum (pc.var) * 100, 1)
-
 
 # Avaliar tranformações em variação, log, etc.
 # Padronizar dados
