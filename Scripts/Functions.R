@@ -30,3 +30,12 @@ removeNA <- function(objeto) {
     
 }
 
+save <- function() {
+    
+    arquivo <- paste0("Dados/", list.files("Dados/")[1])
+    
+    file.remove(arquivo)
+    
+    save.image(paste0("Dados/Data & Functions ", format.Date(Sys.Date(), format = "%d-%B-%Y"), ".RData"))
+    
+}

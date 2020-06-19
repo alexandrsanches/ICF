@@ -9,10 +9,9 @@ library(xts)
 
 blpConnect()
 
-
 if(serie == "original") {
 
-#### Séries originais
+#### Séries originais ####
 
 ## Juro Brasil
 
@@ -65,7 +64,7 @@ colnames(juros3m_de) <- c("data", "juros3m_de")
 colnames(juros2a_de) <- c("data", "juros2a_de")
 colnames(juros10a_de) <- c("data", "juros10a_de")
 
-# Jap?o
+# Japão
 ({
     juros3m_jp <- b("GJGB3M Index")
     juros2a_jp <- b("GJGB2 Index") 
@@ -177,9 +176,10 @@ mercCapitais <- list(msci_emerg, msci_desenv, ibovespa) %>%
 
 rm(ibovespa, list = ls(pattern = "msci"))
 
+
 } else if (serie == "padrao") {
 
-#### Séries padronizadas
+#### Séries padronizadas ####
 
 ## Juro Brasil
 
@@ -370,6 +370,8 @@ mercCapitais <- xts(mercCapitais[,-1], order.by = mercCapitais$data) %>%
     removeNA()
 
 rm(ibovespa, list = ls(pattern = "msci"))
+
+save()
 
 }
 #### Dados antigos ####
