@@ -25,9 +25,17 @@ source("Scripts/Functions.R", encoding = "utf8")
 
 #### Import data ####
 
-serie <- "padrao"
-
-source("Scripts/Dados.R", encoding = "utf8")
+if(Sys.info()["nodename"] == "MESPE1048883") {
+    
+    serie <- "padrao"
+    source("Scripts/Dados.R", encoding = "utf8")
+    
+} else {
+    
+    dados <- list.files("Dados/", pattern = "Data")
+    load(dados)
+    
+}
 
 #### Data transformation ####
 
