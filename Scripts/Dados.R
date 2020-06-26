@@ -371,7 +371,7 @@ mercCapitais <- xts(mercCapitais[,-1], order.by = mercCapitais$data) %>%
 
 rm(ibovespa, list = ls(pattern = "msci"))
 
-save()
+save.image(file = paste0("Dados/Data & Functions ", format.Date(Sys.Date(), format = "%d-%b-%Y"), ".RData"))
 
 }
 #### Dados antigos ####
