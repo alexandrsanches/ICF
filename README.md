@@ -1,7 +1,5 @@
 # Índice de Condições Financeiras (ICF)
 
-[TOC]
-
 ## Apresentação
 
 Construção de um Índice de Condições Financeiras com base em Bacen (2020).
