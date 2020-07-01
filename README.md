@@ -34,8 +34,7 @@ Etapas para construção do ICF conforme sugerido pelo Bacen (2020):
 
 Os pesos apresentados provêm de regressões capturando a capacidade de os componentes principais de cada grupo trazerem informação sobre a variação futura do Índice de Atividade Econômica do Banco Central (IBC-Br).
 
-As regressões têm a taxa de variação em seis meses do IBC-Br como variável dependente. Como regressores, utilizam-se as primeiras componentes
-principais dos grupos, um intercepto e uma variável dummy para a crise global de 2008.
+As regressões têm a taxa de variação em seis meses do IBC-Br como variável dependente. Como regressores, utilizam-se as primeiras componentes principais dos grupos, um intercepto e uma variável dummy para a crise global de 2008.
 
 ## Replicação do ICF
 
@@ -106,3 +105,13 @@ principais dos grupos, um intercepto e uma variável dummy para a crise global d
 | Índices de ações MSCI (emergentes)            | ok!    | Bloomberg |
 | Ibovespa                                      | ok!    | Bloomberg |
 
+## FactoMineR
+
+Retorna uma lista com os seguinte valores:
+
+- `eig` - uma matriz contendo todos os autovalores, o percentual da variância e o percentual acumulado da variância;
+- `var` - uma lista de matrizes contendo todos os resultados para as variáveis ativas (coordenadas, correlação entre variáveis e eixos, cosseno quadrado, contribuição);
+- `ind` - uma lista de matrizes contendo todos os resultados para os indivíduos ativos (coordenadas, cosseno quadrado, contribuições);
+- `ind.sup` - uma lista de matrizes contendo todos os resultados para os indivíduos suplementares (coordenadas, cosseno quadrado;)
+- `quanti.sup` - uma lista de matrizes contendo todos os resultados das variáveis quantitativas suplementares (coordenadas, correlação entre variáveis e eixos);
+- `quali.sup` - uma lista de matrizes contendo todos os resultados das variáveis categóricas suplementares (coordenadas de cada categoria de cada variável, v.test que é um critério de uma distribuição normal, eta2 que é o coeficiente de correlação quadrada entre uma variável qualitativa e uma dimensão).

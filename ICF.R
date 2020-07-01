@@ -13,12 +13,11 @@ suppressPackageStartupMessages({
     library(readxl)
     library(bizdays)
     library(plyr)
-    library(Rblpapi)
     library(tidyverse)
     library(reshape2)
     library(rmarkdown)
     library(knitr) 
-    library(urca)
+    library(FactoMineR)
 })
 
 source("Scripts/Functions.R", encoding = "utf8")
@@ -29,20 +28,32 @@ if(Sys.info()["nodename"] == "MESPE1048883") {
     
     serie <- "padrao"
     source("Scripts/Dados.R", encoding = "utf8")
+    rm(serie)
     
 } else {
     
-    dados <- list.files("Dados/", pattern = "Data")
+    dados <- paste0("Dados/",max(list.files("Dados/", pattern = "Data")))
     load(dados)
-    
+    rm(dados, serie)
 }
+
+pesos <- structure(list(Grupos = c(1, 2, 3, 4, 5, 6, 7), 
+                        Nomes = c("Juros Brasil", 
+                                  "Juros Exterior", "Risco", "Moedas", "Petróleo", "Commodities", "Mercado de capitais"), 
+                        Pesos = c(0.34, 0.33, 0.18, 0.2, 0.23, -0.13, -0.15)), 
+                   row.names = c(NA, -7L), class = c("tbl_df", "tbl", "data.frame"))
 
 #### Data transformation ####
 
-pca <- prcomp(moedas)
+pca_juroBrasil <- PCA(juroBrasil, graph = F)
+pca_juroExterior <- PCA(juroExterior, graph = F)
+pca_risco <- PCA(risco, graph = F)
+pca_moedas <- PCA(moedas, graph = F)
+pca_petroleo <- PCA(petroleo, graph = F)
+pca_commodities <- PCA(commodities, graph = F)
+pca_mercCapitais <- PCA(mercCapitais, graph = F)
 
-pc.var <- pca$sdev^2
-pc.var.per <- round(pc.var / sum (pc.var) * 100, 1)
+pca <- prcomp(juroExterior)
 
 # Avaliar tranformações em variação, log, etc.
 # Padronizar dados
