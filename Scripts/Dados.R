@@ -13,8 +13,8 @@ if (serie == "original") {
     #### Séries originais ####
     
     ## Juro Brasil
-    juros1a_br <- b("BCSFLPDV CMPN Curncy")
-    juros5a_br <- b("BCSFSPDV CMPN Curncy")
+    juros1a_br <- AutoBloomberg("BCSFLPDV CMPN Curncy")
+    juros5a_br <- AutoBloomberg("BCSFSPDV CMPN Curncy")
     
     colnames(juros1a_br) <- c("data", "juro1a_br")
     colnames(juros5a_br) <- c("data", "juro5a_br")
@@ -28,36 +28,36 @@ if (serie == "original") {
     ## Juro internacional
     
     # EUA
-    juros3m_us <- b("H15T3M Index")
-    juros2a_us <- b("H15T2Y Index")
-    juros10a_us <- b("H15T10Y Index")
+    juros3m_us <- AutoBloomberg("H15T3M Index")
+    juros2a_us <- AutoBloomberg("H15T2Y Index")
+    juros10a_us <- AutoBloomberg("H15T10Y Index")
     
     colnames(juros3m_us) <- c("data", "juros3m_us")
     colnames(juros2a_us) <- c("data", "juros2a_us")
     colnames(juros10a_us) <- c("data", "juros10a_us")
     
     # Reino Unido
-    juros3m_uk <- b("GUKG3M Index")
-    juros2a_uk <- b("GUKG2 Index")
-    juros10a_uk <- b("GUKG10 Index")
+    juros3m_uk <- AutoBloomberg("GUKG3M Index")
+    juros2a_uk <- AutoBloomberg("GUKG2 Index")
+    juros10a_uk <- AutoBloomberg("GUKG10 Index")
     
     colnames(juros3m_uk) <- c("data", "juros3m_uk")
     colnames(juros2a_uk) <- c("data", "juros2a_uk")
     colnames(juros10a_uk) <- c("data", "juros10a_uk")
     
     # Alemanha
-    juros3m_de <- b("I01603M Index")
-    juros2a_de <- b("GDBR2 Index")
-    juros10a_de <- b("GDBR10 Index")
+    juros3m_de <- AutoBloomberg("I01603M Index")
+    juros2a_de <- AutoBloomberg("GDBR2 Index")
+    juros10a_de <- AutoBloomberg("GDBR10 Index")
     
     colnames(juros3m_de) <- c("data", "juros3m_de")
     colnames(juros2a_de) <- c("data", "juros2a_de")
     colnames(juros10a_de) <- c("data", "juros10a_de")
     
     # Japão
-    juros3m_jp <- b("GJGB3M Index")
-    juros2a_jp <- b("GJGB2 Index")
-    juros10a_jp <- b("GJGB10 Index")
+    juros3m_jp <- AutoBloomberg("GJGB3M Index")
+    juros2a_jp <- AutoBloomberg("GJGB2 Index")
+    juros10a_jp <- AutoBloomberg("GJGB10 Index")
     
     colnames(juros3m_jp) <- c("data", "juros3m_jp")
     colnames(juros2a_jp) <- c("data", "juros2a_jp")
@@ -75,8 +75,8 @@ if (serie == "original") {
     rm(list = ls(pattern = "_"))
     
     ## Risco
-    cds_br <- b("CBRZ1U5 CBIN Curncy")
-    vix <- b("VIX Index")
+    cds_br <- AutoBloomberg("CBRZ1U5 CBIN Curncy")
+    vix <- AutoBloomberg("VIX Index")
     
     colnames(cds_br) <- c("data", "cds_br")
     colnames(vix) <- c("data", "vix")
@@ -91,9 +91,9 @@ if (serie == "original") {
     
     ## Moedas
     
-    cambio <- b("BZFXPTAX Index")
-    dxy_desenv <- b("DXY Curncy")
-    dxy_emerg <- b("FXJPEMCS Index")
+    cambio <- AutoBloomberg("BZFXPTAX Index")
+    dxy_desenv <- AutoBloomberg("DXY Curncy")
+    dxy_emerg <- AutoBloomberg("FXJPEMCS Index")
     
     colnames(cambio) <- c("data", "cambio")
     colnames(dxy_desenv) <- c("data", "dxy_desenv")
@@ -108,8 +108,8 @@ if (serie == "original") {
     rm(cambio, list = ls(pattern = "dxy"))
     
     ## Petróleo
-    petro_wti <- b("CL1 Comdty")
-    petro_brent <- b("CO1 Comdty")
+    petro_wti <- AutoBloomberg("CL1 Comdty")
+    petro_brent <- AutoBloomberg("CO1 Comdty")
     
     colnames(petro_wti) <- c("data", "petro_wti")
     colnames(petro_brent) <- c("data", "petro_brent")
@@ -123,8 +123,8 @@ if (serie == "original") {
     rm(list = ls(pattern = "_"))
     
     ## Commodities
-    crb_food <- b("CRB FOOD Index")
-    crb_metal <- b("CRB METL Index")
+    crb_food <- AutoBloomberg("CRB FOOD Index")
+    crb_metal <- AutoBloomberg("CRB METL Index")
     
     colnames(crb_food) <- c("data", "crb_food")
     colnames(crb_metal) <- c("data", "crb_metal")
@@ -138,9 +138,9 @@ if (serie == "original") {
     rm(list = ls(pattern = "crb"))
     
     ## Mercado de capitais
-    msci_emerg <- b("MXEF Index")
-    msci_desenv <- b("MXWO Index")
-    ibovespa <- b("IBOV Index")
+    msci_emerg <- AutoBloomberg("MXEF Index")
+    msci_desenv <- AutoBloomberg("MXWO Index")
+    ibovespa <- AutoBloomberg("IBOV Index")
     
     colnames(msci_emerg) <- c("data", "msci_emerg")
     colnames(msci_desenv) <- c("data", "msci_desenv")
@@ -160,8 +160,8 @@ if (serie == "original") {
     
     ## Juro Brasil
     
-    juros1a_br <- sdev(b("BCSFLPDV CMPN Curncy"))
-    juros5a_br <- sdev(b("BCSFSPDV CMPN Curncy"))
+    juros1a_br <- padronizar(AutoBloomberg("BCSFLPDV CMPN Curncy"))
+    juros5a_br <- padronizar(AutoBloomberg("BCSFSPDV CMPN Curncy"))
     
     colnames(juros1a_br) <- c("data", "juro1a_br")
     colnames(juros5a_br) <- c("data", "juro5a_br")
@@ -176,36 +176,36 @@ if (serie == "original") {
     ## Juro internacional
     
     # EUA
-    juros3m_us <- sdev(b("H15T3M Index"))
-    juros2a_us <- sdev(b("H15T2Y Index"))
-    juros10a_us <- sdev(b("H15T10Y Index"))
+    juros3m_us <- padronizar(AutoBloomberg("H15T3M Index"))
+    juros2a_us <- padronizar(AutoBloomberg("H15T2Y Index"))
+    juros10a_us <- padronizar(AutoBloomberg("H15T10Y Index"))
     
     colnames(juros3m_us) <- c("data", "juros3m_us")
     colnames(juros2a_us) <- c("data", "juros2a_us")
     colnames(juros10a_us) <- c("data", "juros10a_us")
     
     # Reino Unido
-    juros3m_uk <- sdev(b("GUKG3M Index"))
-    juros2a_uk <- sdev(b("GUKG2 Index"))
-    juros10a_uk <- sdev(b("GUKG10 Index"))
+    juros3m_uk <- padronizar(AutoBloomberg("GUKG3M Index"))
+    juros2a_uk <- padronizar(AutoBloomberg("GUKG2 Index"))
+    juros10a_uk <- padronizar(AutoBloomberg("GUKG10 Index"))
     
     colnames(juros3m_uk) <- c("data", "juros3m_uk")
     colnames(juros2a_uk) <- c("data", "juros2a_uk")
     colnames(juros10a_uk) <- c("data", "juros10a_uk")
     
     # Alemanha
-    juros3m_de <- sdev(b("I01603M Index"))
-    juros2a_de <- sdev(b("GDBR2 Index"))
-    juros10a_de <- sdev(b("GDBR10 Index"))
+    juros3m_de <- padronizar(AutoBloomberg("I01603M Index"))
+    juros2a_de <- padronizar(AutoBloomberg("GDBR2 Index"))
+    juros10a_de <- padronizar(AutoBloomberg("GDBR10 Index"))
     
     colnames(juros3m_de) <- c("data", "juros3m_de")
     colnames(juros2a_de) <- c("data", "juros2a_de")
     colnames(juros10a_de) <- c("data", "juros10a_de")
     
     # Japão
-    juros3m_jp <- sdev(b("GJGB3M Index"))
-    juros2a_jp <- sdev(b("GJGB2 Index"))
-    juros10a_jp <- sdev(b("GJGB10 Index"))
+    juros3m_jp <- padronizar(AutoBloomberg("GJGB3M Index"))
+    juros2a_jp <- padronizar(AutoBloomberg("GJGB2 Index"))
+    juros10a_jp <- padronizar(AutoBloomberg("GJGB10 Index"))
     
     colnames(juros3m_jp) <- c("data", "juros3m_jp")
     colnames(juros2a_jp) <- c("data", "juros2a_jp")
@@ -224,8 +224,8 @@ if (serie == "original") {
     rm(list = ls(pattern = "_"))
     
     ## Risco
-    cds_br <- sdev(b("CBRZ1U5 CBIN Curncy"))
-    vix <- sdev(b("VIX Index"))
+    cds_br <- padronizar(AutoBloomberg("CBRZ1U5 CBIN Curncy"))
+    vix <- padronizar(AutoBloomberg("VIX Index"))
     
     colnames(cds_br) <- c("data", "cds_br")
     colnames(vix) <- c("data", "vix")
@@ -241,15 +241,15 @@ if (serie == "original") {
     
     ## Moedas
     
-    cambio <- b("BZFXPTAX Index") %>%
+    cambio <- AutoBloomberg("BZFXPTAX Index") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
-    dxy_desenv <- b("DXY Curncy") %>%
+        padronizar()
+    dxy_desenv <- AutoBloomberg("DXY Curncy") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
-    dxy_emerg <- b("FXJPEMCS Index")  %>%
+        padronizar()
+    dxy_emerg <- AutoBloomberg("FXJPEMCS Index")  %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
+        padronizar()
     
     colnames(cambio) <- c("data", "cambio")
     colnames(dxy_desenv) <- c("data", "dxy_desenv")
@@ -265,12 +265,12 @@ if (serie == "original") {
     rm(cambio, list = ls(pattern = "dxy"))
     
     ## Petróleo
-    petro_wti <- b("CL1 Comdty") %>%
+    petro_wti <- AutoBloomberg("CL1 Comdty") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
-    petro_brent <- b("CO1 Comdty") %>%
+        padronizar()
+    petro_brent <- AutoBloomberg("CO1 Comdty") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
+        padronizar()
     
     colnames(petro_wti) <- c("data", "petro_wti")
     colnames(petro_brent) <- c("data", "petro_brent")
@@ -285,12 +285,12 @@ if (serie == "original") {
     rm(list = ls(pattern = "_"))
     
     ## Commodities
-    crb_food <- b("CRB FOOD Index") %>%
+    crb_food <- AutoBloomberg("CRB FOOD Index") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
-    crb_metal <- b("CRB METL Index") %>%
+        padronizar()
+    crb_metal <- AutoBloomberg("CRB METL Index") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
+        padronizar()
     
     colnames(crb_food) <- c("data", "crb_food")
     colnames(crb_metal) <- c("data", "crb_metal")
@@ -305,15 +305,15 @@ if (serie == "original") {
     rm(list = ls(pattern = "crb"))
     
     ## Mercado de capitais
-    msci_emerg <- b("MXEF Index") %>%
+    msci_emerg <- AutoBloomberg("MXEF Index") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
-    msci_desenv <- b("MXWO Index") %>%
+        padronizar()
+    msci_desenv <- AutoBloomberg("MXWO Index") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
-    ibovespa <- b("IBOV Index") %>%
+        padronizar()
+    ibovespa <- AutoBloomberg("IBOV Index") %>%
         mutate(PX_LAST = PX_LAST - lag(PX_LAST, 1)) %>%
-        sdev()
+        padronizar()
     
     colnames(msci_emerg) <- c("data", "msci_emerg")
     colnames(msci_desenv) <- c("data", "msci_desenv")
