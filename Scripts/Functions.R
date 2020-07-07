@@ -1,6 +1,6 @@
 #### Funções
 
-b <- function(ticker) {
+AutoBloomberg <- function(ticker) {
     
     data <- bdh(ticker, c("PX_LAST"),
                 start.date = ymd("2000-01-01"),
