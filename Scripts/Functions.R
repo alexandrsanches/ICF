@@ -12,8 +12,7 @@ sdev <- function(objeto) {
     desv_pad <- sd(objeto[,2], na.rm = T)
     
     objeto <- objeto %>%
-        mutate(PX_LAST = PX_LAST - media,
-               PX_LAST = PX_LAST / desv_pad)
+        mutate(PX_LAST = (PX_LAST - media) / desv_pad)
     
 }
 

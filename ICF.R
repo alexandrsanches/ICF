@@ -53,7 +53,7 @@ pca_petroleo <- PCA(petroleo, graph = F)
 pca_commodities <- PCA(commodities, graph = F)
 pca_mercCapitais <- PCA(mercCapitais, graph = F)
 
-pca <- prcomp(juroExterior)
+pca <- prcomp(petroleo)
 
 # Avaliar tranformações em variação, log, etc.
 # Padronizar dados
@@ -61,8 +61,35 @@ pca <- prcomp(juroExterior)
 
 #### Index construction ####
 
+base <- data.frame(data = rownames(pca[["x"]]), pc1 = pca[["x"]][,1])
+base$data <- as.Date(base$data)
+facto <- data.frame(data = rownames(pca_petroleo[["ind"]][["coord"]]), pc1 = pca_petroleo[["ind"]][["coord"]][,1])
+facto$data <- as.Date(facto$data)
 
 
+
+juroBrasil %>%
+    fortify() %>%
+    ggplot(aes(x = Index)) +
+    geom_line(aes(y = juro1a_br, color = "juro1")) +
+    geom_line(aes(y = juro5a_br, color = "juro5")) +
+    geom_line(data = base, aes(x = data, y = pc1, color = "rbase")) +
+    geom_line(data = facto, aes(x = data, y = pc1, color = "factomine")) +
+    ggthemes::scale_color_economist()
+
+teste <- juroBrasil %>%
+    fortify()
+
+petroleo %>%
+    fortify() %>%
+    filter(Index >= "2010-01-01") %>%
+    ggplot(aes(x = Index)) +
+    geom_line(aes(y = petro_wti, color = "wti")) +
+    geom_line(aes(y = petro_brent, color = "brent")) +
+    geom_line(data = facto, aes(x = data, y = pc1, color = "factomine")) +
+    `geom_line(data = base, aes(x = data, y = pc1, color = "rbase")) +
+    coord_cartesian(ylim = c(-15,15)) 
+    
 #### Plots #####
 
 source("Scripts/Plots.R", encoding = "utf8") 
@@ -93,3 +120,4 @@ render(input = "Scripts/Final (HTML).Rmd",
 
  file.rename(from = "Resultados/Final (HTML).html",
             to = paste0("Resultados/Indicador de Condições Financeiras - ", max(dados$data), ".html"))
+    
