@@ -2,8 +2,11 @@
 
 b <- function(ticker) {
     
-    data <- bdh(ticker, c("PX_LAST"), start.date = ymd("2000-01-01"), options = c("periodicitySelection" = "DAILY"))
+    data <- bdh(ticker, c("PX_LAST"),
+                start.date = ymd("2000-01-01"),
+                options = c("periodicitySelection" = "DAILY"))
     
+    return(data)
 }
 
 sdev <- function(objeto) {
@@ -14,6 +17,7 @@ sdev <- function(objeto) {
     objeto <- objeto %>%
         mutate(PX_LAST = (PX_LAST - media) / desv_pad)
     
+    return(objeto)
 }
 
 removeNA <- function(objeto) {
@@ -27,6 +31,7 @@ removeNA <- function(objeto) {
     objeto <- rbind(na.omit(objeto[objeto$temp == 1,]),
                           objeto[objeto$temp == 0,])[, -1]
     
+    return(objeto)
 }
 
 save <- function() {
