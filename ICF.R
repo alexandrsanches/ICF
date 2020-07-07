@@ -1,7 +1,7 @@
 #### Define working directory ####
 
 switch (Sys.info()["sysname"],
-    Linux = setwd("~/Desenvolvimento/SPE/Indicador de Condições Financeiras"),
+    Linux = setwd("~/Desenvolvimento/SPE/ICF"),
     Darwin = setwd("~/Documents/GitHub/Indicador de Condições Financeiras"),
     Windows = setwd("~/ICF")
 )
