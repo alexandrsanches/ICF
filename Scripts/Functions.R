@@ -9,29 +9,29 @@ AutoBloomberg <- function(ticker) {
     return(data)
 }
 
-sdev <- function(objeto) {
+padronizar <- function(serie) {
     
-    media <- mean(objeto[,2], na.rm = T)
-    desv_pad <- sd(objeto[,2], na.rm = T)
+    media <- mean(serie[,2], na.rm = T)
+    desv_pad <- sd(serie[,2], na.rm = T)
     
-    objeto <- objeto %>%
+    serie <- serie %>%
         mutate(PX_LAST = (PX_LAST - media) / desv_pad)
     
-    return(objeto)
+    return(serie)
 }
 
-removeNA <- function(objeto) {
+removeNA <- function(serie) {
     
-    max_data_disponivel_temp <- max(as.Date(unlist(lapply(objeto, FUN = function(x) {end(na.omit(x))}))))
-    min_data_disponivel_temp <- min(as.Date(unlist(lapply(objeto, FUN = function(x) {end(na.omit(x))}))))
+    max_data_disponivel_temp <- max(as.Date(unlist(lapply(serie, FUN = function(x) {end(na.omit(x))}))))
+    min_data_disponivel_temp <- min(as.Date(unlist(lapply(serie, FUN = function(x) {end(na.omit(x))}))))
     
-    objeto <- objeto[paste0("/", max_data_disponivel_temp)]
-    objeto <- merge(temp = index(objeto) <= as.Date(min_data_disponivel_temp), objeto)
+    serie <- serie[paste0("/", max_data_disponivel_temp)]
+    serie <- merge(temp = index(serie) <= as.Date(min_data_disponivel_temp), serie)
     
-    objeto <- rbind(na.omit(objeto[objeto$temp == 1,]),
-                          objeto[objeto$temp == 0,])[, -1]
+    serie <- rbind(na.omit(serie[serie$temp == 1,]),
+                          serie[serie$temp == 0,])[, -1]
     
-    return(objeto)
+    return(serie)
 }
 
 save <- function() {
