@@ -24,7 +24,7 @@ source("Scripts/Functions.R", encoding = "utf8")
 
 #### Import data ####
 
-if(Sys.info()["nodename"] == "MESPE1048883") {
+if (Sys.info()["nodename"] == "MESPE1048883") {
     
     serie <- "padrao"
     source("Scripts/Dados.R", encoding = "utf8")
@@ -32,26 +32,26 @@ if(Sys.info()["nodename"] == "MESPE1048883") {
     
 } else {
     
-    dados <- paste0("Dados/",max(list.files("Dados/", pattern = "Data")))
+    dados <- paste0("Dados/", max(list.files("Dados/", pattern = "Data")))
     load(dados)
     rm(dados, serie)
 }
 
 pesos <- structure(list(Grupos = c(1, 2, 3, 4, 5, 6, 7), 
-                        Nomes = c("Juros Brasil", 
-                                  "Juros Exterior", "Risco", "Moedas", "Petróleo", "Commodities", "Mercado de capitais"), 
+                        Nomes = c("Juros Brasil", "Juros Exterior", "Risco", "Moedas", "Petróleo",
+                                  "Commodities", "Mercado de capitais"), 
                         Pesos = c(0.34, 0.33, 0.18, 0.2, 0.23, -0.13, -0.15)), 
                    row.names = c(NA, -7L), class = c("tbl_df", "tbl", "data.frame"))
 
 #### Data transformation ####
 
-pca_juroBrasil <- PCA(juroBrasil, graph = F)
-pca_juroExterior <- PCA(juroExterior, graph = F)
-pca_risco <- PCA(risco, graph = F)
-pca_moedas <- PCA(moedas, graph = F)
-pca_petroleo <- PCA(petroleo, graph = F)
-pca_commodities <- PCA(commodities, graph = F)
-pca_mercCapitais <- PCA(mercCapitais, graph = F)
+pca_juroBrasil <- PCA(juroBrasil, graph = FALSE)
+pca_juroExterior <- PCA(juroExterior, graph = FALSE)
+pca_risco <- PCA(risco, graph = FALSE)
+pca_moedas <- PCA(moedas, graph = FALSE)
+pca_petroleo <- PCA(petroleo, graph = FALSE)
+pca_commodities <- PCA(commodities, graph = FALSE)
+pca_mercCapitais <- PCA(mercCapitais, graph = FALSE)
 
 pca <- prcomp(petroleo)
 
