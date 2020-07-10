@@ -9,16 +9,16 @@ AutoBloomberg <- function(ticker) {
     return(data)
 }
 
-padronizar <- function(serie) {
-    
-    media <- mean(serie[,2], na.rm = T)
-    desv_pad <- sd(serie[,2], na.rm = T)
-    
-    serie <- serie %>%
-        mutate(PX_LAST = (PX_LAST - media) / desv_pad)
-    
-    return(serie)
-}
+#padronizar <- function(serie) {
+#    
+#    media <- mean(serie[,2], na.rm = T)
+#    desv_pad <- sd(serie[,2], na.rm = T)
+#    
+#    serie <- serie %>%
+#        mutate(PX_LAST = (PX_LAST - media) / desv_pad)
+#    
+#    return(serie)
+#}
 
 removeNA <- function(serie) {
     
