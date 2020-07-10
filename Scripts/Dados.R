@@ -154,7 +154,7 @@ rm(ibovespa, list = ls(pattern = "msci"))
 ## Armazenamento dos dados caso o script esteja sendo executado no Terminal da Bloomberg
 
 if (Sys.info()["nodename"] == "MESPE1048883") {
-    save.image(file = paste0("Dados/Data & Functions ",
-                             format.Date(Sys.Date(), format = "%d-%b-%Y"),
-                             ".RData" ))
+    save(juroBrasil, juroExterior, risco, moedas, petroleo, commodities, mercCapitais,
+         file = paste0("Dados/Data ",
+                       format.Date(Sys.Date(), format = "%d-%b-%Y"), ".RData" ))
 }
