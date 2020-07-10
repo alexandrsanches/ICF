@@ -25,48 +25,50 @@ source("Scripts/Functions.R", encoding = "utf8")
 #### Import data ####
 
 if (Sys.info()["nodename"] == "MESPE1048883") {
-    
-    serie <- "padrao"
     source("Scripts/Dados.R", encoding = "utf8")
-    rm(serie)
-    
 } else {
-    
     dados <- paste0("Dados/", max(list.files("Dados/", pattern = "Data")))
     load(dados)
-    rm(dados, serie)
+    rm(dados)
 }
 
-pesos <- structure(list(Grupos = c(1, 2, 3, 4, 5, 6, 7), 
-                        Nomes = c("Juros Brasil", "Juros Exterior", "Risco", "Moedas", "Petróleo",
-                                  "Commodities", "Mercado de capitais"), 
-                        Pesos = c(0.34, 0.33, 0.18, 0.2, 0.23, -0.13, -0.15)), 
-                   row.names = c(NA, -7L), class = c("tbl_df", "tbl", "data.frame"))
+pesos <- data.frame(Grupos = c(1, 2, 3, 4, 5, 6, 7),
+                    Nomes = c("Juros Brasil", "Juros Exterior", "Risco", "Moedas", "Petróleo",
+                              "Commodities", "Mercado de capitais"),
+                    Pesos = c(0.34, 0.33, 0.18, 0.2, 0.23, -0.13, -0.15))
 
-#### Data transformation ####
+# pesos <- structure(list(Grupos = c(1, 2, 3, 4, 5, 6, 7), 
+#                         Nomes = c("Juros Brasil", "Juros Exterior", "Risco", "Moedas", "Petróleo",
+#                                   "Commodities", "Mercado de capitais"), 
+#                         Pesos = c(0.34, 0.33, 0.18, 0.2, 0.23, -0.13, -0.15)), 
+#                    row.names = c(NA, -7L), class = c("tbl_df", "tbl", "data.frame"))
 
-pca_juroBrasil <- PCA(juroBrasil, graph = FALSE)
-pca_juroExterior <- PCA(juroExterior, graph = FALSE)
-pca_risco <- PCA(risco, graph = FALSE)
-pca_moedas <- PCA(moedas, graph = FALSE)
-pca_petroleo <- PCA(petroleo, graph = FALSE)
-pca_commodities <- PCA(commodities, graph = FALSE)
-pca_mercCapitais <- PCA(mercCapitais, graph = FALSE)
+#### First principal component extraction ####
 
-pca <- prcomp(petroleo)
+pca_juroBrasil <- as.xts(PCA(juroBrasil, graph = FALSE)[["ind"]][["coord"]][,1], dateFormat = "Date")
+pca_juroExterior <- as.xts(PCA(juroExterior, graph = FALSE)[["ind"]][["coord"]][,1], dateFormat = "Date")
+pca_risco <- as.xts(PCA(risco, graph = FALSE)[["ind"]][["coord"]][,1], dateFormat = "Date")
+pca_moedas <- as.xts(PCA(moedas, graph = FALSE)[["ind"]][["coord"]][,1], dateFormat = "Date")
+pca_petroleo <- as.xts(PCA(petroleo, graph = FALSE)[["ind"]][["coord"]][,1], dateFormat = "Date")
+pca_commodities <- as.xts(PCA(commodities, graph = FALSE)[["ind"]][["coord"]][,1], dateFormat = "Date")
+pca_mercCapitais <- as.xts(PCA(mercCapitais, graph = FALSE)[["ind"]][["coord"]][,1], dateFormat = "Date")
 
-# Avaliar tranformações em variação, log, etc.
-# Padronizar dados
-# Avaliar a questão das defasagens (talvez eu possa usar o mesmo procedimento que uso nos modelos via AutoMod e XGBoost)
+#### Data base merging and filtering ####
+
+base <- merge(pca_juroBrasil, pca_juroExterior, pca_risco, pca_moedas, pca_petroleo, pca_commodities, pca_mercCapitais)
+
+# To do:
+# Incluir o IBC-Br na base (pegar via função consultaSGS)
+# Analisar a observações ausentes (tem alguns NAs estranhos nos juros internacionais - veja isso depois que der o merge na linha 58)
+# Filtrar a base de forma que ela só tenha dias úteis brasileiros
+# Iniciar a base no período/dia em que todas as colunas possuam valor diferente de NA
 
 #### Index construction ####
 
-base <- data.frame(data = rownames(pca[["x"]]), pc1 = pca[["x"]][,1])
-base$data <- as.Date(base$data)
-facto <- data.frame(data = rownames(pca_petroleo[["ind"]][["coord"]]), pc1 = pca_petroleo[["ind"]][["coord"]][,1])
-facto$data <- as.Date(facto$data)
+# To do:
+# Ler o artigo para ver como é feita a construção do ICF.
 
-
+#### Plots #####
 
 juroBrasil %>%
     fortify() %>%
@@ -87,10 +89,8 @@ petroleo %>%
     geom_line(aes(y = petro_wti, color = "wti")) +
     geom_line(aes(y = petro_brent, color = "brent")) +
     geom_line(data = facto, aes(x = data, y = pc1, color = "factomine")) +
-    `geom_line(data = base, aes(x = data, y = pc1, color = "rbase")) +
+    geom_line(data = base, aes(x = data, y = pc1, color = "rbase")) +
     coord_cartesian(ylim = c(-15,15)) 
-    
-#### Plots #####
 
 source("Scripts/Plots.R", encoding = "utf8") 
 
