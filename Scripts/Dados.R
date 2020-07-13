@@ -1,11 +1,15 @@
-### Load packages
+#### Load packages #### ---------------------------------------------------------------------------> NÃO SERIA MELHOR DEIXAR O CARREGAMENTO DE FUNÇÕES CONCENTRADO NO SCRIPT PRINCIPAL?
 
 library(Rblpapi)
 library(lubridate)
 library(tidyverse)
 library(xts)
 
-### Load Bloomberg terminal
+#### Obtenção dos dados do Bacen ####
+
+IBC_Br <- AutoBCB(codigoBCB = 24363, period = "mes")
+
+#### Obtenção dos dados da Bloomberg ####
 
 blpConnect()
 
