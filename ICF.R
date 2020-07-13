@@ -18,30 +18,23 @@ suppressPackageStartupMessages({
     library(rmarkdown)
     library(knitr) 
     library(FactoMineR)
+    library(Rblpapi)
+    library(lubridate)
 })
 
 source("Scripts/Functions.R", encoding = "utf8")
+source("Scripts/AutoBCB.R", encoding = "utf8")
 
 #### Import data ####
 
-if (Sys.info()["nodename"] == "MESPE1048883") {
-    source("Scripts/Dados.R", encoding = "utf8")
-} else {
-    dados <- paste0("Dados/", max(list.files("Dados/", pattern = "Data")))
-    load(dados)
-    rm(dados)
-}
+source("Scripts/Dados.R", encoding = "utf8")
+
+#### Weights definition ####
 
 pesos <- data.frame(Grupos = c(1, 2, 3, 4, 5, 6, 7),
                     Nomes = c("Juros Brasil", "Juros Exterior", "Risco", "Moedas", "Petróleo",
                               "Commodities", "Mercado de capitais"),
                     Pesos = c(0.34, 0.33, 0.18, 0.2, 0.23, -0.13, -0.15))
-
-# pesos <- structure(list(Grupos = c(1, 2, 3, 4, 5, 6, 7), 
-#                         Nomes = c("Juros Brasil", "Juros Exterior", "Risco", "Moedas", "Petróleo",
-#                                   "Commodities", "Mercado de capitais"), 
-#                         Pesos = c(0.34, 0.33, 0.18, 0.2, 0.23, -0.13, -0.15)), 
-#                    row.names = c(NA, -7L), class = c("tbl_df", "tbl", "data.frame"))
 
 #### First principal component extraction ####
 
@@ -61,9 +54,6 @@ base <- merge(pca_juroBrasil, pca_juroExterior, pca_risco, pca_moedas, pca_petro
 base <- base[paste0(start(na.omit(base)), "/")]
 
 #### Index construction ####
-
-# To do:
-# Ler o artigo para ver como é feita a construção do ICF.
 
 #### Plots #####
 
