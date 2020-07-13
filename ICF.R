@@ -55,13 +55,10 @@ pca_mercCapitais <- as.xts(PCA(mercCapitais, graph = FALSE)[["ind"]][["coord"]][
 
 #### Data base merging and filtering ####
 
-base <- merge(pca_juroBrasil, pca_juroExterior, pca_risco, pca_moedas, pca_petroleo, pca_commodities, pca_mercCapitais)
+base <- merge(pca_juroBrasil, pca_juroExterior, pca_risco, pca_moedas, pca_petroleo,
+              pca_commodities, pca_mercCapitais)
 
-# To do:
-# Incluir o IBC-Br na base (pegar via função consultaSGS)
-# Analisar a observações ausentes (tem alguns NAs estranhos nos juros internacionais - veja isso depois que der o merge na linha 58)
-# Filtrar a base de forma que ela só tenha dias úteis brasileiros
-# Iniciar a base no período/dia em que todas as colunas possuam valor diferente de NA
+base <- base[paste0(start(na.omit(base)), "/")]
 
 #### Index construction ####
 
