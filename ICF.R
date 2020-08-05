@@ -1,9 +1,7 @@
 #### Define working directory ####
 
-switch (Sys.info()["sysname"],
-    Linux = setwd("~/Desenvolvimento/SPE/ICF"),
-    Darwin = setwd("~/Documents/GitHub/Indicador de Condições Financeiras"),
-    Windows = setwd("~/ICF")
+switch (Sys.info()["nodename"],
+        alexandresanches = setwd("~/Documentos/GitHub/ICF")
 )
 
 #### Load packages and functions #### 
