@@ -22,7 +22,7 @@ suppressPackageStartupMessages({
 })
 
 source("Scripts/Functions.R", encoding = "utf8")
-source("Scripts/AutoBCB.R", encoding = "utf8")
+# source("Scripts/AutoBCB.R", encoding = "utf8")
 
 #### Import data ####
 
