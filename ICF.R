@@ -1,7 +1,8 @@
 #### Define working directory ####
 
 switch (Sys.info()["nodename"],
-        alexandresanches = setwd("~/Documentos/GitHub/ICF")
+        alexandresanches = setwd("~/Documentos/GitHub/ICF"),
+        elementaryOS = setwd("~/Desenvolvimento/SPE/ICF")
 )
 
 #### Load packages and functions #### 
