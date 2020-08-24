@@ -2,7 +2,8 @@
 
 switch (Sys.info()["nodename"],
         alexandresanches = setwd("~/Documentos/GitHub/ICF"),
-        elementaryOS = setwd("~/Desenvolvimento/SPE/ICF")
+        elementaryOS = setwd("~/Desenvolvimento/SPE/ICF"),
+        MESPE1048883 = setwd("~/GitHub/ICF")
 )
 
 #### Load packages and functions #### 
