@@ -95,9 +95,9 @@ if (Sys.info()["nodename"] == "MESPE1048883") {
     
     ## Moedas
     
-    cambio <- AutoBloomberg("BZFXPTAX Index")
-    dxy_desenv <- AutoBloomberg("DXY Curncy")
-    dxy_emerg <- AutoBloomberg("FXJPEMCS Index")
+    cambio <- AutoBloombergTendencia("BZFXPTAX Index")
+    dxy_desenv <- AutoBloombergTendencia("DXY Curncy")
+    dxy_emerg <- AutoBloombergTendencia("FXJPEMCS Index")
     
     colnames(cambio) <- c("data", "cambio")
     colnames(dxy_desenv) <- c("data", "dxy_desenv")
@@ -112,8 +112,8 @@ if (Sys.info()["nodename"] == "MESPE1048883") {
     rm(cambio, list = ls(pattern = "dxy"))
     
     ## Petróleo
-    petro_wti <- AutoBloomberg("CL1 Comdty")
-    petro_brent <- AutoBloomberg("CO1 Comdty")
+    petro_wti <- AutoBloombergTendencia("CL1 Comdty")
+    petro_brent <- AutoBloombergTendencia("CO1 Comdty")
     
     colnames(petro_wti) <- c("data", "petro_wti")
     colnames(petro_brent) <- c("data", "petro_brent")
@@ -127,8 +127,8 @@ if (Sys.info()["nodename"] == "MESPE1048883") {
     rm(list = ls(pattern = "_"))
     
     ## Commodities
-    crb_food <- AutoBloomberg("CRB FOOD Index")
-    crb_metal <- AutoBloomberg("CRB METL Index")
+    crb_food <- AutoBloombergTendencia("CRB FOOD Index")
+    crb_metal <- AutoBloombergTendencia("CRB METL Index")
     
     colnames(crb_food) <- c("data", "crb_food")
     colnames(crb_metal) <- c("data", "crb_metal")
@@ -142,9 +142,9 @@ if (Sys.info()["nodename"] == "MESPE1048883") {
     rm(list = ls(pattern = "crb"))
     
     ## Mercado de capitais
-    msci_emerg <- AutoBloomberg("MXEF Index")
-    msci_desenv <- AutoBloomberg("MXWO Index")
-    ibovespa <- AutoBloomberg("IBOV Index")
+    msci_emerg <- AutoBloombergTendencia("MXEF Index")
+    msci_desenv <- AutoBloombergTendencia("MXWO Index")
+    ibovespa <- AutoBloombergTendencia("IBOV Index")
     
     colnames(msci_emerg) <- c("data", "msci_emerg")
     colnames(msci_desenv) <- c("data", "msci_desenv")

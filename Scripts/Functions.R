@@ -9,6 +9,20 @@ AutoBloomberg <- function(ticker) {
     return(data)
 }
 
+
+AutoBloombergTendencia <- function(ticker) {
+    
+    data <- bdh(ticker, c("PX_LAST"),
+                start.date = ymd("2000-01-01"),
+                options = c("periodicitySelection" = "DAILY"))
+    
+    serie <- lm(data$PX_LAST ~ seq(1, nrow(data), 1))
+    
+    data$PX_LAST <- serie$residuals
+    
+    return(data)
+}
+
 #padronizar <- function(serie) {
 #    
 #    media <- mean(serie[,2], na.rm = T)
