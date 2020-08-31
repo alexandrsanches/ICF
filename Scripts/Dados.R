@@ -165,7 +165,7 @@ if (Sys.info()["nodename"] == "MESPE1048883") {
                        format.Date(Sys.Date(), format = "%d-%b-%Y"), ".RData" ))
     
 } else {
-    dados <- paste0("Dados/", max(list.files("Dados/", pattern = "Data")))
+    dados <- paste0("L:/Area Macro/Base de Dados/Temp/Alexandre/Dados/", max(list.files("L:/Area Macro/Base de Dados/Temp/Alexandre/Dados", pattern = "ICF")))
     load(dados)
     rm(dados)
 }

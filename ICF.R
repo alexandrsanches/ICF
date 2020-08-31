@@ -153,7 +153,7 @@ source("Scripts/Tables.R", encoding = "utf8")
 
 #### Save data for Markdown rendering #### 
 
-save.image(file = "Dados/Informações para o relatório.RData") 
+save(base, file = paste0("Dados/ICF ", max(base$data), ".RData")) 
 
 #### Render R Markdown ####
 
