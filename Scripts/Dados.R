@@ -7,8 +7,8 @@
 
 #### Obtenção dos dados do Bacen ####
 
-IBC_Br <- AutoBCB(codigoBCB = 24363, period = "mes")
-IBC_Br <- xts(IBC_Br[, -1], order.by = IBC_Br[, 1])
+#IBC_Br <- AutoBCB(codigoBCB = 24363, period = "mes")
+#IBC_Br <- xts(IBC_Br[, -1], order.by = IBC_Br[, 1])
 
 #### Obtenção dos dados da Bloomberg ####
 
